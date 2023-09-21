@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { useRoute } from 'wouter'
+import { Link, useRoute } from 'wouter'
 
 export const SongDetails = () => {
   const [, params] = useRoute('/song/:id')
@@ -14,6 +14,7 @@ export const SongDetails = () => {
         <h1>Details for Song: {data.song.title}</h1>
         <p>ID : {data.song.id}</p>
         <hr />
+        <Link href='/'>Go Back</Link>
       </>
     )
   } else {
