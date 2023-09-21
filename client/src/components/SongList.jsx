@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { Link } from 'wouter'
 
 export const SongList = () => {
   const { loading, error, data } = useQuery(GET_SONGS)
@@ -17,6 +18,8 @@ export const SongList = () => {
             </li>
           ))}
         </ul>
+        <hr />
+        <Link href='/song/new'>Create Song</Link>
       </>
     )
   } else {
@@ -24,7 +27,7 @@ export const SongList = () => {
   }
 }
 
-const GET_SONGS = gql`
+export const GET_SONGS = gql`
   query {
     songs {
       id
