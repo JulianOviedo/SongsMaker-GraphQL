@@ -1,11 +1,9 @@
-import './App.css'
+import { Test } from './components/test'
 
-function App () {
+export default function App () {
   return (
-    <>
-      <h1>graphql</h1>
-    </>
+    <div>
+      <Test />
+    </div>
   )
 }
-
-export default App

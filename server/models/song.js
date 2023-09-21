@@ -15,6 +15,7 @@ const SongSchema = new Schema({
 
 SongSchema.statics.addLyric = function(id, content) {
   const Lyric = mongoose.model('lyric');
+  console.log('requested !')
 
   return this.findById(id)
     .then(song => {
@@ -26,6 +27,8 @@ SongSchema.statics.addLyric = function(id, content) {
 }
 
 SongSchema.statics.findLyrics = function(id) {
+  console.log('requested !')
+
   return this.findById(id)
     .populate('lyrics')
     .then(song => song.lyrics);

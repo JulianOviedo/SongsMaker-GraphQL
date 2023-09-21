@@ -12,6 +12,7 @@ const SongType = new GraphQLObjectType({
     lyrics: {
       type: new GraphQLList(LyricType),
       resolve(parentValue) {
+        console.log('requested !')
         return Song.findLyrics(parentValue.id);
       }
     }
