@@ -6,7 +6,6 @@ export const SongList = () => {
   const [deleteSong] = useMutation(DELETE_SONG, { refetchQueries: [{ query: GET_SONGS }] })
 
   const handleDelete = (songId) => {
-    console.log(songId)
     deleteSong({ variables: { id: songId } })
       .then(res => {
         console.log('DELETED: ', res)
