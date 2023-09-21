@@ -23,7 +23,7 @@ export const SongList = () => {
         <ul>
           {data.songs.map(song => (
             <li key={song.id}>
-              <p>{song.title}</p>
+              <Link href={`/song/${song.id}`}>{song.title}</Link>
               <button onClick={() => handleDelete(song.id)}>Delete</button>
             </li>
           ))}
