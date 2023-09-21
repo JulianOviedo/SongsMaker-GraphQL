@@ -1,9 +1,9 @@
-import { Test } from './components/test'
+import { SongList } from './components/SongList'
 
 export default function App () {
   return (
     <div>
-      <Test />
+      <SongList />
     </div>
   )
 }
