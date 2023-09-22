@@ -33,6 +33,8 @@ query SongDetails($id: ID!) {
       title
       lyrics {
         content
+        id
+        likes
       }
     }
   }
