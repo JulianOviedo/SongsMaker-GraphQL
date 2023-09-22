@@ -1,14 +1,18 @@
 import { gql, useMutation } from '@apollo/client'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export const CreateLyric = ({ id }) => {
   const [lyric, setLyric] = useState('')
   const [addLyrics] = useMutation(ADD_LYRIC, { variables: { content: lyric, songId: id } })
-  console.log(lyric)
+  const ref = useRef(null)
+
   const handleSubmit = (e) => {
     e.preventDefault()
     addLyrics({ variables: { content: lyric, songId: id } })
-      .then(res => setLyric(''))
+      .then(res => {
+        ref.current.value = ''
+      }
+      )
       .catch(e => console.log(e))
   }
 
@@ -21,7 +25,7 @@ export const CreateLyric = ({ id }) => {
       <form onSubmit={handleSubmit}>
         <label>
           Add Lyric :
-          <input type='text' onChange={handleChange} />
+          <input type='text' onChange={handleChange} ref={ref} />
         </label>
       </form>
     </div>
@@ -35,6 +39,7 @@ const ADD_LYRIC = gql`
           title
           lyrics {
               content
+              id
          }
      }
   }
