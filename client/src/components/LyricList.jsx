@@ -3,8 +3,18 @@ import { gql, useMutation } from '@apollo/client'
 export const LyricList = ({ lyricsArray, songTitle }) => {
   const [addLike] = useMutation(ADD_LIKE)
 
-  const handleLike = (lyricId) => {
-    addLike({ variables: { id: lyricId } })
+  const handleLike = (lyricId, lyricLikes) => {
+    addLike({
+      variables: { id: lyricId, likes: lyricLikes },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        likeLyric: {
+          __typename: 'LyricType',
+          id: lyricId,
+          likes: lyricLikes + 1
+        }
+      }
+    })
       .then(res => {
         console.log(res)
       })
@@ -25,7 +35,7 @@ export const LyricList = ({ lyricsArray, songTitle }) => {
                   <br />
                   <small>
                     <i>{lyric.likes}</i>
-                    <button onClick={() => handleLike(lyric.id)}>Like</button>
+                    <button onClick={() => handleLike(lyric.id, lyric.likes)}>Like</button>
                   </small>
                   <br />
                 </li>
